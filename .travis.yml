@@ -1,0 +1,11 @@
+language: node_js
+os: linux
+
+node_js:
+  - node
+  - '12'
+  - '10'
+  - '8'
+
+script:
+  - npm test
