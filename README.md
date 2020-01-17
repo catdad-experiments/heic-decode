@@ -1,6 +1,6 @@
 # heic-decode
 
-Decodes HEIC images and extracts the raw pixel data.
+Decode HEIC images to extract raw pixel data.
 
 [![travis][travis.svg]][travis.link]
 [![npm-downloads][npm-downloads.svg]][npm.link]
