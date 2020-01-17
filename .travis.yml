@@ -20,7 +20,7 @@ jobs:
       deploy:
         provider: npm
         email: vatev.1+npm@gmail.com
-        api_token:
+        api_key:
           secure: L/tP3uRPGpi/+OpqtnhggDSwOAYJqe4Hd4l4HT7lxoGwUj+gwUDh6DjFL2NlVkT826JgPmi2mAKToddgwHxOBY/7Or/z7jDBZKtVVfcUBpdeqw6GhG9AAR6F5mmh8x/bFA0ILQ8pMUCRWCr3Su7Hq7j4Fyj2Pd7+yck72MTPyDKDHgasCyGeCmLjS7qOQiy6lKT7H+YlzL/3e7bHI7XgtoPAX7DPHqFYTt/WN4o0TCPdqdvZDnpc7Q938Br40xIYrCZXynTpaeYXvQ+lBF3Ko41bpMva0exgatQq+eb5cqzuzvkdqSi1Xsba1Pc4fwzARcrT1fA9Jcq7pp5h21gdSdRAhvBJcMQF9h5VDREgRNzn85WE4g//cI8imI16yRiqaZZs8h6bjJzLfe9HbP2jAqG3gfwN+kYoUkkZH78nuStIvhupelXssQ8uRZv2QQfsdT7YCNSKXd/HblOAUQ/LmjuO9+DAXHNujJo6FPUKOn6Kk9ZUFNpjZ51g/Xue+cXoQIBN4RyrhV9fYcq+vetNP4t5MK0h35TlgTHe0JMkEvGMmLoDOJvvGT93Mm0mNKJmgBoStFcO4ZRVdEuWBY5k+X/9evhIDquqMJ5DS5dY3LpWaYvpoYoeVcmaBXvwBXYpQZdUZMCYB2v6o8ACNt4E7eGoIlRmmrmCQwuVZDC/jiw=
         on:
           tags: true
