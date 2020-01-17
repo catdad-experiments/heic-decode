@@ -37,3 +37,9 @@ node_modules/
 coverage/
 .nyc_output/
 temp/
+
+# not production module code
+scripts/
+temp/
+test/
+.*
