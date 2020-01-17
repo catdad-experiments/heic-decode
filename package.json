@@ -11,7 +11,13 @@
     "type": "git",
     "url": "git+https://github.com/catdad-experiments/heic-decode.git"
   },
-  "keywords": [],
+  "keywords": [
+    "heic",
+    "heif",
+    "image",
+    "photo",
+    "decode"
+  ],
   "author": "Kiril Vatev <vatev.1@gmail.com>",
   "license": "ISC",
   "bugs": {
@@ -32,12 +38,5 @@
   },
   "engines": {
     "node": ">=8.0.0"
-  },
-  "keywords": [
-    "heic",
-    "heif",
-    "image",
-    "photo",
-    "decode"
-  ]
+  }
 }
