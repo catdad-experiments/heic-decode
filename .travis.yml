@@ -21,7 +21,7 @@ jobs:
         provider: npm
         email: vatev.1+npm@gmail.com
         api_key:
-          secure: xtDZZHyNvPRdf3hEA4A97SMNNUhhLnE0ysS9N4WPVRg9H/+6dbaGur7ZHSid3TCaObCB+9KRiE9cU1ksiU+g300mhWv9ZYvzTNvSdhu4rfUgr4AJWTPebxqnyqjRGYzBd9r1KmpNKh5GIaH2wMBX5jKgkUvhGad9Tq5YxLoQOL7ruU9QYoK2rEQ4I6XmRPqXI7lcN3XQTEM9oGwtvXXgdafQumT6npeXpyXAcYnDzJNwK3COaKGV7A9Yc1/CIM9ExAMrSXFqk0jWkgaGPRkpNZ9AoOyxqE0eiF/xcu4Tc+fxC2cATIUI25s2CkvfoRICSeiLt9JYTTM7qROICxf0BTkReVUMyuCBbUGly0g/gc7ddWOlpEvTZD1k0hc3VPMoL80MWcd7M+vUzQIpm67dXBgBQEHEEBdoDlcb1KgLWDFBF5kqsZ0BFRBtUZm3r3qGxCxry+IcmvQnWUiju8mgUtCRQpdDUgXxGB266q1FLCK0H5oC6M77h4m4J+2YA/aZLtMag3GaWu25vu++cw+EEv/arS2tpdaSkRuD4HpKjWXKFV2L3qygp4ygEswGxtgmT7KOHpslbmFH+j8WSUEBaizv8SZvHmFsZ2fS9vYTANxCW6GLTEWeQ2dv2EPAOzlvW3+nLnGjRTD84i8wqSyjZ99NkIGKXEcNeB7wZNZuCrE=
+          secure: L/tP3uRPGpi/+OpqtnhggDSwOAYJqe4Hd4l4HT7lxoGwUj+gwUDh6DjFL2NlVkT826JgPmi2mAKToddgwHxOBY/7Or/z7jDBZKtVVfcUBpdeqw6GhG9AAR6F5mmh8x/bFA0ILQ8pMUCRWCr3Su7Hq7j4Fyj2Pd7+yck72MTPyDKDHgasCyGeCmLjS7qOQiy6lKT7H+YlzL/3e7bHI7XgtoPAX7DPHqFYTt/WN4o0TCPdqdvZDnpc7Q938Br40xIYrCZXynTpaeYXvQ+lBF3Ko41bpMva0exgatQq+eb5cqzuzvkdqSi1Xsba1Pc4fwzARcrT1fA9Jcq7pp5h21gdSdRAhvBJcMQF9h5VDREgRNzn85WE4g//cI8imI16yRiqaZZs8h6bjJzLfe9HbP2jAqG3gfwN+kYoUkkZH78nuStIvhupelXssQ8uRZv2QQfsdT7YCNSKXd/HblOAUQ/LmjuO9+DAXHNujJo6FPUKOn6Kk9ZUFNpjZ51g/Xue+cXoQIBN4RyrhV9fYcq+vetNP4t5MK0h35TlgTHe0JMkEvGMmLoDOJvvGT93Mm0mNKJmgBoStFcO4ZRVdEuWBY5k+X/9evhIDquqMJ5DS5dY3LpWaYvpoYoeVcmaBXvwBXYpQZdUZMCYB2v6o8ACNt4E7eGoIlRmmrmCQwuVZDC/jiw=
         on:
           tags: true
           repo: catdad-experiments/heic-decode
