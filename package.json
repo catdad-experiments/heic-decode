@@ -1,0 +1,27 @@
+{
+  "name": "heic-decode",
+  "version": "1.0.0",
+  "description": "Decode HEIC images to raw data",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/catdad-experiments/heic-decode.git"
+  },
+  "keywords": [],
+  "author": "Kiril Vatev <vatev.1@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/catdad-experiments/heic-decode/issues"
+  },
+  "homepage": "https://github.com/catdad-experiments/heic-decode#readme",
+  "dependencies": {
+    "is-heic": "^1.0.0",
+    "libheif-js": "^1.6.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0"
+  }
+}
