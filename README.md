@@ -37,3 +37,8 @@ const decode = require('heic-decode');
 You can use this data to integrate with other imaging libraries for processing.
 
 _Note that while the decoder returns a Promise, it does the majority of the work synchronously, so you should consider using a worker thread in order to not block the main thread in highly concurrent production environments._
+
+## Related
+
+* [heic-convert](https://github.com/catdad-experiments/heic-convert) - convert heic/heif images to jpeg and png
+* [libheif-js](https://github.com/catdad-experiments/libheif-js) - libheif as a pure-javascript npm module
