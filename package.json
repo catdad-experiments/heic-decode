@@ -1,6 +1,6 @@
 {
   "name": "heic-decode",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Decode HEIC images to raw data",
   "main": "index.js",
   "scripts": {
