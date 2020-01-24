@@ -1,6 +1,6 @@
 # heic-decode
 
-Decode HEIC images to extract raw pixel data.
+> Decode HEIC images to extract raw pixel data.
 
 [![travis][travis.svg]][travis.link]
 [![npm-downloads][npm-downloads.svg]][npm.link]
@@ -40,5 +40,6 @@ _Note that while the decoder returns a Promise, it does the majority of the work
 
 ## Related
 
+* [heic-cli](https://github.com/catdad-experiments/heic-cli) - convert heic/heif images to jpeg or png from the command line
 * [heic-convert](https://github.com/catdad-experiments/heic-convert) - convert heic/heif images to jpeg and png
 * [libheif-js](https://github.com/catdad-experiments/libheif-js) - libheif as a pure-javascript npm module
