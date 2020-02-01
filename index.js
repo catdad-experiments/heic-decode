@@ -25,15 +25,7 @@ const isHeic = (buffer) => {
   return false;
 };
 
-const decodeBuffer = async inputBuffer => {
-  const decoder = new libheif.HeifDecoder();
-  const data = decoder.decode(inputBuffer);
-
-  if (!data.length) {
-    throw new Error('HEIF image not found');
-  }
-
-  const image = data[0];
+const decodeImage = async (image) => {
   const width = image.get_width();
   const height = image.get_height();
 
@@ -51,10 +43,29 @@ const decodeBuffer = async inputBuffer => {
   return { width, height, data: arrayBuffer };
 };
 
-module.exports = async ({ buffer }) => {
+const decodeBuffer = async ({ buffer, all }) => {
+  const decoder = new libheif.HeifDecoder();
+  const data = decoder.decode(buffer);
+
+  if (!data.length) {
+    throw new Error('HEIF image not found');
+  }
+
+  if (!all) {
+    return await decodeImage(data[0]);
+  }
+
+  return data.map(image => {
+    return {
+      decode: async () => await decodeImage(image)
+    };
+  });
+};
+
+module.exports = async ({ buffer, all = false }) => {
   if (!isHeic(buffer)) {
     throw new TypeError('input buffer is not a HEIC image');
   }
 
-  return await decodeBuffer(buffer);
+  return await decodeBuffer({ buffer, all: !!all });
 };
