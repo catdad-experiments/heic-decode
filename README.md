@@ -20,6 +20,8 @@ npm install heic-decode
 
 ## Usage
 
+Decode the main image in the file:
+
 ```javascript
 const fs = require('fs');
 const decode = require('heic-decode');
@@ -31,6 +33,28 @@ const decode = require('heic-decode');
     height, // integer height of the image
     data    // ArrayBuffer containing decoded raw image data
   } = await decode({ buffer });
+})();
+```
+
+Decode all images in the file:
+
+```javascript
+const fs = require('fs');
+const decode = require('heic-decode');
+
+(async () => {
+  const buffer = await promisify(fs.readFile)('/path/to/my/multi-image.heic');
+  const images = decode.all({ buffer });
+
+  for (let image of images) {
+    // decode and use each image individually
+    // so you don't run out of memory
+    const {
+      width,  // integer width of the image
+      height, // integer height of the image
+      data    // ArrayBuffer containing decoded raw image data
+    } = await image.decode();
+  }
 })();
 ```
 
