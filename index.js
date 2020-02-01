@@ -44,6 +44,10 @@ const decodeImage = async (image) => {
 };
 
 const decodeBuffer = async ({ buffer, all }) => {
+  if (!isHeic(buffer)) {
+    throw new TypeError('input buffer is not a HEIC image');
+  }
+
   const decoder = new libheif.HeifDecoder();
   const data = decoder.decode(buffer);
 
@@ -62,10 +66,5 @@ const decodeBuffer = async ({ buffer, all }) => {
   });
 };
 
-module.exports = async ({ buffer, all = false }) => {
-  if (!isHeic(buffer)) {
-    throw new TypeError('input buffer is not a HEIC image');
-  }
-
-  return await decodeBuffer({ buffer, all: !!all });
-};
+module.exports = async ({ buffer }) => await decodeBuffer({ buffer, all: false });
+module.exports.all = async ({ buffer }) => await decodeBuffer({ buffer, all: true });

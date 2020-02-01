@@ -15,6 +15,7 @@ const hash = data => crypto.createHash('sha256').update(Buffer.from(data)).diges
 describe('heic-decode', () => {
   it('exports a function', () => {
     expect(decode).to.be.a('function');
+    expect(decode).to.have.property('all').and.to.be.a('function');
   });
 
   it('can decode a known image', async () => {
@@ -30,7 +31,7 @@ describe('heic-decode', () => {
 
   it('can decode multiple images inside a single file', async () => {
     const buffer = await readFile(path.resolve(root, 'temp', '0003.heic'));
-    const images = await decode({ buffer, all: true });
+    const images = await decode.all({ buffer });
 
     expect(images).to.have.lengthOf(3);
 

@@ -35,7 +35,7 @@ const toJpeg = async ({ data, width, height }) => {
 
 (async () => {
   const buffer = await readStdin();
-  const images = await decode({ buffer, all: true });
+  const images = await decode.all({ buffer });
 
   console.log('found %s images', images.length);
 
