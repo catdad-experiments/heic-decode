@@ -24,6 +24,7 @@ Decode the main image in the file:
 
 ```javascript
 const fs = require('fs');
+const { promisify } = require('util');
 const decode = require('heic-decode');
 
 (async () => {
@@ -40,6 +41,7 @@ Decode all images in the file:
 
 ```javascript
 const fs = require('fs');
+const { promisify } = require('util');
 const decode = require('heic-decode');
 
 (async () => {
