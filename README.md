@@ -46,7 +46,7 @@ const decode = require('heic-decode');
 
 (async () => {
   const buffer = await promisify(fs.readFile)('/path/to/my/multi-image.heic');
-  const images = decode.all({ buffer });
+  const images = await decode.all({ buffer });
 
   for (let image of images) {
     // decode and use each image individually
