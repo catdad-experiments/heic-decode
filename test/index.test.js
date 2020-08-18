@@ -2,31 +2,49 @@
 const { promisify } = require('util');
 const fs = require('fs');
 const path = require('path');
-const crypto = require('crypto');
 
 const root = require('rootrequire');
 const { expect } = require('chai');
+const { PNG } = require('pngjs');
+const toUint8 = require('buffer-to-uint8array');
+const pixelmatch = require('pixelmatch');
 
 const decode = require('../');
 
 const readFile = promisify(fs.readFile);
-const hash = data => crypto.createHash('sha256').update(Buffer.from(data)).digest('hex');
 
 describe('heic-decode', () => {
+  const readControl = async name => {
+    const buffer = await readFile(path.resolve(root, `temp/${name}`));
+    const { data, width, height } = PNG.sync.read(buffer);
+
+    return { data, width, height };
+  };
+
+  const compare = (expected, actual, width, height, errString = 'actual image did not match control image') => {
+    const result = pixelmatch(toUint8(Buffer.from(expected)), toUint8(Buffer.from(actual)), null, width, height, {
+      threshold: 0.1
+    });
+
+    // allow 5% of pixels to be different
+    expect(result).to.be.below(width * height * 0.05, errString);
+  };
+
   it('exports a function', () => {
     expect(decode).to.be.a('function');
     expect(decode).to.have.property('all').and.to.be.a('function');
   });
 
   it('can decode a known image', async () => {
+    const control = await readControl('0002-control.png');
     const buffer = await readFile(path.resolve(root, 'temp', '0002.heic'));
     const { width, height, data } = await decode({ buffer });
 
-    expect(width).to.equal(1440);
-    expect(height).to.equal(960);
+    expect(width).to.equal(control.width);
+    expect(height).to.equal(control.height);
     expect(data).to.be.instanceof(ArrayBuffer);
 
-    expect(hash(data)).to.equal('fe4585b4d72109d470c01acf74b7301b88bf2df4b865daadc3e35d3413d1228f');
+    compare(control.data, data, control.width, control.height);
   });
 
   it('can decode multiple images inside a single file', async () => {
@@ -35,22 +53,24 @@ describe('heic-decode', () => {
 
     expect(images).to.have.lengthOf(3);
 
-    for (let { i, hash: expectedHash } of [
-      { i: 0, hash: '612299de20d15ac3f35728f271dd5b2bcd73ad8d451538c94989eb1a0674ac56' },
-      { i: 1, hash: '60b683e07517883df35a14ca9db7f76c427bcbbaa11f84ad52e806699839574e' },
-      { i: 2, hash: '60b683e07517883df35a14ca9db7f76c427bcbbaa11f84ad52e806699839574e' },
+    const controls = await Promise.all([
+      readControl('0003-0-control.png'),
+      readControl('0003-1-control.png')
+    ]);
+
+    for (let { i, control } of [
+      { i: 0, control: controls[0] },
+      { i: 1, control: controls[1] },
+      { i: 2, control: controls[1] },
     ]) {
       expect(images[i]).to.have.a.property('decode').and.to.be.a('function');
 
       const image = await images[i].decode();
 
-      expect(image).to.have.property('width', 4500);
-      expect(image).to.have.property('height', 3000);
+      expect(image).to.have.property('width', control.width);
+      expect(image).to.have.property('height', control.height);
 
-      expect(
-        hash(image.data),
-        `image ${i} hash does not match`
-      ).to.equal(expectedHash);
+      compare(control.data, image.data, control.width, control.height, `actual image at index ${i} did not match control`);
     }
   });
 
