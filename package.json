@@ -28,12 +28,15 @@
     "libheif-js": "^1.6.1"
   },
   "devDependencies": {
+    "buffer-to-uint8array": "^1.1.0",
     "chai": "^4.2.0",
     "eslint": "^5.16.0",
     "fs-extra": "^8.1.0",
     "jimp": "^0.9.3",
     "mocha": "^7.0.0",
     "node-fetch": "^2.6.0",
+    "pixelmatch": "^5.2.1",
+    "pngjs": "^5.0.0",
     "rootrequire": "^1.0.0"
   },
   "engines": {
