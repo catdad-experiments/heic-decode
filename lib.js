@@ -47,6 +47,10 @@ module.exports = libheif => {
       throw new TypeError('input buffer is not a HEIC image');
     }
 
+    // wait for module to be initialized
+    // currently it is synchronous but it might be async in the future
+    await libheif.ready;
+
     const decoder = new libheif.HeifDecoder();
     const data = decoder.decode(buffer);
 
