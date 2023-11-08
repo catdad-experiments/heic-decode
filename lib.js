@@ -1,5 +1,3 @@
-const libheif = require('libheif-js');
-
 const uint8ArrayUtf8ByteString = (array, start, end) => {
   return String.fromCharCode(...array.slice(start, end));
 };
@@ -43,28 +41,32 @@ const decodeImage = async (image) => {
   return { width, height, data: arrayBuffer };
 };
 
-const decodeBuffer = async ({ buffer, all }) => {
-  if (!isHeic(buffer)) {
-    throw new TypeError('input buffer is not a HEIC image');
-  }
+module.exports = libheif => {
+  const decodeBuffer = async ({ buffer, all }) => {
+    if (!isHeic(buffer)) {
+      throw new TypeError('input buffer is not a HEIC image');
+    }
 
-  const decoder = new libheif.HeifDecoder();
-  const data = decoder.decode(buffer);
+    const decoder = new libheif.HeifDecoder();
+    const data = decoder.decode(buffer);
 
-  if (!data.length) {
-    throw new Error('HEIF image not found');
-  }
+    if (!data.length) {
+      throw new Error('HEIF image not found');
+    }
 
-  if (!all) {
-    return await decodeImage(data[0]);
-  }
+    if (!all) {
+      return await decodeImage(data[0]);
+    }
 
-  return data.map(image => {
-    return {
-      decode: async () => await decodeImage(image)
-    };
-  });
+    return data.map(image => {
+      return {
+        decode: async () => await decodeImage(image)
+      };
+    });
+  };
+
+  return {
+    one: async ({ buffer }) => await decodeBuffer({ buffer, all: false }),
+    all: async ({ buffer }) => await decodeBuffer({ buffer, all: true })
+  };
 };
-
-module.exports = async ({ buffer }) => await decodeBuffer({ buffer, all: false });
-module.exports.all = async ({ buffer }) => await decodeBuffer({ buffer, all: true });
