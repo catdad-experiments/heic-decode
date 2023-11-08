@@ -63,7 +63,9 @@ describe('heic-decode', () => {
       { i: 1, control: controls[1] },
       { i: 2, control: controls[1] },
     ]) {
-      expect(images[i]).to.have.a.property('decode').and.to.be.a('function');
+      expect(images[i]).to.have.property('decode').and.to.be.a('function');
+      expect(images[i]).to.have.property('width').and.to.equal(control.width);
+      expect(images[i]).to.have.property('height').and.to.equal(control.height);
 
       const image = await images[i].decode();
 
