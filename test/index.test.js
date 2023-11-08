@@ -9,11 +9,22 @@ const { PNG } = require('pngjs');
 const toUint8 = require('buffer-to-uint8array');
 const pixelmatch = require('pixelmatch');
 
-const decode = require('../');
-
 const readFile = promisify(fs.readFile);
 
-describe('heic-decode', () => {
+describe('heic-decode (default wasm bundle)', () => {
+  runTests(require(root));
+});
+
+describe('heic-decode (js)', () => {
+  const libheif = require('libheif-js');
+  const { one, all } = require('../lib')(libheif);
+  const decode = one;
+  decode.all = all;
+
+  runTests(decode);
+});
+
+function runTests(decode) {
   const readControl = async name => {
     const buffer = await readFile(path.resolve(root, `temp/${name}`));
     const { data, width, height } = PNG.sync.read(buffer);
@@ -87,4 +98,4 @@ describe('heic-decode', () => {
         .and.to.have.property('message', 'input buffer is not a HEIC image');
     }
   });
-});
+}
