@@ -53,7 +53,7 @@ function runTests(decode) {
 
     expect(width).to.equal(control.width);
     expect(height).to.equal(control.height);
-    expect(data).to.be.instanceof(ArrayBuffer);
+    expect(data).to.be.instanceof(Uint8ClampedArray);
 
     compare(control.data, data, control.width, control.height);
   });
@@ -82,6 +82,7 @@ function runTests(decode) {
 
       expect(image).to.have.property('width', control.width);
       expect(image).to.have.property('height', control.height);
+      expect(image).to.have.property('data').and.to.be.instanceOf(Uint8ClampedArray);
 
       compare(control.data, image.data, control.width, control.height, `actual image at index ${i} did not match control`);
     }

@@ -27,18 +27,17 @@ const decodeImage = async (image) => {
   const width = image.get_width();
   const height = image.get_height();
 
-  const arrayBuffer = await new Promise((resolve, reject) => {
+  const { data } = await new Promise((resolve, reject) => {
     image.display({ data: new Uint8ClampedArray(width*height*4), width, height }, (displayData) => {
       if (!displayData) {
         return reject(new Error('HEIF processing error'));
       }
 
-      // get the ArrayBuffer from the Uint8Array
-      resolve(displayData.data.buffer);
+      resolve(displayData);
     });
   });
 
-  return { width, height, data: arrayBuffer };
+  return { width, height, data };
 };
 
 module.exports = libheif => {

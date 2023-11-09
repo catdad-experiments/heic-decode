@@ -32,7 +32,7 @@ const decode = require('heic-decode');
   const {
     width,  // integer width of the image
     height, // integer height of the image
-    data    // ArrayBuffer containing decoded raw image data
+    data    // Uint8ClampedArray containing pixel data
   } = await decode({ buffer });
 })();
 ```
@@ -54,13 +54,13 @@ const decode = require('heic-decode');
     const {
       width,  // integer width of the image
       height, // integer height of the image
-      data    // ArrayBuffer containing decoded raw image data
+      data    // Uint8ClampedArray containing pixel data
     } = await image.decode();
   }
 })();
 ```
 
-You can use this data to integrate with other imaging libraries for processing.
+When the images are decoded, the return value is a plain object in the format of [`ImageData`](https://developer.mozilla.org/en-US/docs/Web/API/ImageData). You can use this object to integrate with other imaging libraries for processing.
 
 _Note that while the decoder returns a Promise, it does the majority of the work synchronously, so you should consider using a worker thread in order to not block the main thread in highly concurrent production environments._
 
