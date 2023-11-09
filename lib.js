@@ -64,6 +64,8 @@ module.exports = libheif => {
 
     return data.map(image => {
       return {
+        width: image.get_width(),
+        height: image.get_height(),
         decode: async () => await decodeImage(image)
       };
     });
