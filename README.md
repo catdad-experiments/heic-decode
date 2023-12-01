@@ -2,12 +2,12 @@
 
 > Decode HEIC images to extract raw pixel data.
 
-[![travis][travis.svg]][travis.link]
+[![CI][ci.svg]][ci.link]
 [![npm-downloads][npm-downloads.svg]][npm.link]
 [![npm-version][npm-version.svg]][npm.link]
 
-[travis.svg]: https://travis-ci.com/catdad-experiments/heic-decode.svg?branch=master
-[travis.link]: https://travis-ci.com/catdad-experiments/heic-decode
+[ci.svg]: https://github.com/catdad-experiments/heic-decode/actions/workflows/ci.yml/badge.svg
+[ci.link]: https://github.com/catdad-experiments/heic-decode/actions/workflows/ci.yml
 [npm-downloads.svg]: https://img.shields.io/npm/dm/heic-decode.svg
 [npm.link]: https://www.npmjs.com/package/heic-decode
 [npm-version.svg]: https://img.shields.io/npm/v/heic-decode.svg
