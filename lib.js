@@ -53,20 +53,36 @@ module.exports = libheif => {
     const decoder = new libheif.HeifDecoder();
     const data = decoder.decode(buffer);
 
+    const free = () => {
+      for (const image of data) {
+        image.free();
+      }
+
+      decoder.decoder.delete();
+    };
+
     if (!data.length) {
       throw new Error('HEIF image not found');
     }
 
     if (!all) {
-      return await decodeImage(data[0]);
+      try {
+        return await decodeImage(data[0]);
+      } finally {
+        free();
+      }
     }
 
-    return data.map(image => {
+    return Object.defineProperty(data.map(image => {
       return {
         width: image.get_width(),
         height: image.get_height(),
-        decode: async () => await decodeImage(image)
+        decode: async () => await decodeImage(image),
       };
+    }), 'free', {
+      enumerable: false,
+      configurable: false,
+      value: free
     });
   };
 
