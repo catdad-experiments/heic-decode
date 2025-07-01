@@ -82,6 +82,7 @@ module.exports = libheif => {
     }), 'dispose', {
       enumerable: false,
       configurable: false,
+      writable: false,
       value: dispose
     });
   };
