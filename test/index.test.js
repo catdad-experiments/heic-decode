@@ -63,7 +63,7 @@ function runTests(decode) {
     const images = await decode.all({ buffer });
 
     expect(images).to.have.lengthOf(3);
-    expect(images).to.have.property('free').and.to.be.a('function');
+    expect(images).to.have.property('dispose').and.to.be.a('function');
 
     const controls = await Promise.all([
       readControl('0003-0-control.png'),
@@ -88,7 +88,7 @@ function runTests(decode) {
       compare(control.data, image.data, control.width, control.height, `actual image at index ${i} did not match control`);
     }
 
-    images.free();
+    images.dispose();
   });
 
   it('throws if data other than a HEIC image is passed in', async () => {

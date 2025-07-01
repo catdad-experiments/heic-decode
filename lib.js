@@ -53,7 +53,7 @@ module.exports = libheif => {
     const decoder = new libheif.HeifDecoder();
     const data = decoder.decode(buffer);
 
-    const free = () => {
+    const dispose = () => {
       for (const image of data) {
         image.free();
       }
@@ -69,7 +69,7 @@ module.exports = libheif => {
       try {
         return await decodeImage(data[0]);
       } finally {
-        free();
+        dispose();
       }
     }
 
@@ -79,10 +79,10 @@ module.exports = libheif => {
         height: image.get_height(),
         decode: async () => await decodeImage(image),
       };
-    }), 'free', {
+    }), 'dispose', {
       enumerable: false,
       configurable: false,
-      value: free
+      value: dispose
     });
   };
 
