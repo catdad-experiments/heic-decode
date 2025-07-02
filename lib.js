@@ -77,7 +77,7 @@ module.exports = libheif => {
       return {
         width: image.get_width(),
         height: image.get_height(),
-        decode: async () => await decodeImage(image),
+        decode: async () => await decodeImage(image)
       };
     }), 'dispose', {
       enumerable: false,
