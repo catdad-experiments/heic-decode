@@ -57,8 +57,13 @@ const decode = require('heic-decode');
       data    // Uint8ClampedArray containing pixel data
     } = await image.decode();
   }
+
+  // when you are done, make sure to free all memory used to convert the images
+  images.dispose();
 })();
 ```
+
+> Note: when decoding a single image (i.e. using `decode`), all resources are freed automatically after the conversion. However, when decoding all images in a file (i.e. using `decode.all`), you can decode the images at any time, so there is no safe time for the library to free resources -- you need to make sure to call `dispose` once you are done.
 
 When the images are decoded, the return value is a plain object in the format of [`ImageData`](https://developer.mozilla.org/en-US/docs/Web/API/ImageData). You can use this object to integrate with other imaging libraries for processing.
 
